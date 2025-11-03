@@ -1,6 +1,5 @@
 ---
 
-```markdown
 # 🚀 Echoda — Modern Full-Stack Web Application
 
 ![License](https://img.shields.io/github/license/ghsjulian/echoda)
@@ -9,6 +8,7 @@
 ![MongoDB](https://img.shields.io/badge/MongoDB-6.x-success?logo=mongodb)
 ![Express](https://img.shields.io/badge/Express.js-latest-lightgrey?logo=express)
 ![Status](https://img.shields.io/badge/Status-In%20Development-orange)
+
 
 ---
 
@@ -168,9 +168,15 @@ Contributions are always welcome! 💜
 ## 🧑‍💻 Author
 
 **👨‍💻 Ghs Julian**
+
+<br/>
+
 Full-Stack Web Developer (MERN, PHP, Python)
+<br/>
 📧 [ghsjulian@outlook.com](mailto:ghsjulian@outlook.com)
+<br/>
 💼 [Portfolio](https://ghsresume.netlify.app)
+<br/>
 🌐 [GitHub](https://github.com/ghsjulian)
 
 ---
