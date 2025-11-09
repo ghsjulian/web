@@ -18,7 +18,7 @@ const HOST = process.env.HOST || "127.0.0.1";
 app.use(helmet());
 // Log HTTP requests (only in development)
 if (process.env.NODE_ENV !== "production") {
-  app.use(morgan("dev"));
+    app.use(morgan("dev"));
 }
 
 // Parse JSON and cookies
@@ -28,35 +28,42 @@ app.use(cookieParser());
 
 // Enable CORS for frontend domain
 app.use(
-  cors({
-    origin: "http://127.0.0.1:5000",
-    methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true,
-    maxAge: 86400,
-  })
+    cors({
+        origin: "http://127.0.0.1:5000",
+        methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+        allowedHeaders: ["Content-Type", "Authorization"],
+        credentials: true,
+        maxAge: 86400
+    })
 );
 
 // Gzip compression for performance
 app.use(compression());
 
 // ---------------------- ROUTES ----------------------
+const adminPath = path.join(__dirname, "../frontend/dist/");
+app.use("/admin", express.static(adminPath));
+app.get("/admin", (req, res) => {
+    res.sendFile(adminPath + "index.html");
+});
+
 app.get("/", (req, res) => {
-  res.send("🚀 Server is running successfully!");
+     res.send("🚀 Server is running successfully!");
 });
 
 // ---------------------- APIs Will Be Defined Here ----------------------
 
 // ---------------------- ERROR HANDLING ----------------------
 app.use((err, req, res, next) => {
-  console.error("❌ Error:", err.message);
-  res.status(500).json({
-    success: false,
-    message: "Internal Server Error",
-  });
+    console.error("❌ Error:", err.message);
+    res.status(500).json({
+        success: false,
+        err,
+        message: "Internal Server Error"
+    });
 });
 
 // ---------------------- START SERVER ----------------------
 app.listen(PORT, () => {
-  console.log(`✅ Server is running on http://${HOST}\n`);
+    console.log(`✅ Server is running on http://${HOST}\n`);
 });

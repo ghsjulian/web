@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "homepage" : "http://localhost:8080/server/admin",
   "scripts": {
     "start": "node server/server.js",
     "server": "nodemon server/server.js"

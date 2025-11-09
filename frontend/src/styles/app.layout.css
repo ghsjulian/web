@@ -450,7 +450,13 @@ tbody td {
         width: 100%;
     }
     .dashboard-grid {
-        width: 95%;
-        margin: .5rem auto;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+    .dashboard-grid .card {
+        margin: auto;
+        width: 100%;
     }
 }
