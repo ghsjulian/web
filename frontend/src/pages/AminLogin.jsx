@@ -1,40 +1,43 @@
 import React, { useRef, useState } from "react";
-import "../styles/admin-login.css"
+import "../styles/admin-login.css";
 
 const AdminLogin = () => {
-    const [email,setEmail] = useState("")
-    const [password,setPassword] = useState("")
-    const msgRef = useRef(null)
-    
-    const showMessage = (msg,type) =>{
-        if(type){
-            msgRef.current.classList.add("success")
-            msgRef.current.textContent = msg
-        }else {
-            msgRef.current.classList.add("error")
-            msgRef.current.textContent = msg
-        }
-        setTimeout(()=>{
-            msgRef.current.removeAttribute("class")
-            msgRef.current.textContent = ""
-        },2500)
-    }
-    const isValid = ()=>{
-        if(email.trim() === "" || password.trim() === ""){
-            showMessage("Required All Fields",false)
-            return false;
-        } else if(!password.trim().length >= 6){
-            showMessage("Password Will Be 6 Charecters",false)
-            return false;
-        }
-        return true;
-    }
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const msgRef = useRef(null);
 
-    const handleSubmit = (e)=>{
-        e.preventDefault()
-        if(!isValid()) return
-        console.log("Okay...")
+  const showMessage = (msg, type) => {
+    if (type) {
+      msgRef.current.classList.add("success");
+      msgRef.current.textContent = msg;
+    } else {
+      msgRef.current.classList.add("error");
+      msgRef.current.textContent = msg;
     }
+    setTimeout(() => {
+      msgRef.current.removeAttribute("class");
+      msgRef.current.textContent = "";
+    }, 2500);
+  };
+  const isValid = () => {
+    if (email.trim() === "" || password.trim() === "") {
+      showMessage("Required All Fields", false);
+      return false;
+    } else if (!password.trim().length >= 6) {
+      showMessage("Password Will Be 6 Charecters", false);
+      return false;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showMessage("Invalid Email Format", false);
+      return false;
+    }
+    return true;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!isValid()) return;
+    console.log("Okay...");
+  };
 
   return (
     <div className="login-container">
@@ -43,18 +46,24 @@ const AdminLogin = () => {
         <p ref={msgRef}></p>
       </div>
 
-      <form
-        className="login-form"
-      >
+      <form className="login-form">
         <div className="input-group">
-          <input onChange={(e)=>setEmail(e.target.value)} 
-          value={email} type="email" placeholder="Email Address" />
+          <input
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+            type="email"
+            placeholder="Email Address"
+          />
           <i className="fas fa-envelope icon"></i>
         </div>
 
         <div className="input-group">
-          <input onChange={(e)=>setPassword(e.target.value)} 
-          value={password} type="password" placeholder="Password" />
+          <input
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+            type="password"
+            placeholder="Password"
+          />
           <i className="fas fa-lock icon"></i>
         </div>
 
@@ -63,9 +72,7 @@ const AdminLogin = () => {
           <label for="remember">Remember me</label>
         </div>
 
-        <button
-        onClick={handleSubmit}
-        className="login-btn">
+        <button onClick={handleSubmit} className="login-btn">
           Sign In
         </button>
       </form>
