@@ -49,6 +49,7 @@ body {
   height: var(--max-h);
   background: var(--app-bg);
   box-shadow: var(--app-shadow);
+  border-radius: 8px;
 }
 .app header {
   position: absolute;
@@ -63,6 +64,7 @@ body {
   align-items: center;
   padding: 0.5rem 1rem;
   box-shadow: var(--shadow);
+  border-top-right-radius: 8px;
 }
 header .top-left,
 header .top-right {
@@ -90,8 +92,11 @@ header .top-left .search {
   background: transparent;
   padding: 0.5rem 1rem;
 }
+.search button {
+  padding: 0.5rem 0.3rem;
+}
 .search input {
-  width: 90%;
+  width: 100%;
 }
 .top-right button {
   outline: none;
@@ -126,6 +131,8 @@ header .top-left .search {
   background: var(--surface);
   z-index: 90;
   padding: 1rem;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
 }
 aside .nav {
   width: 100%;
@@ -208,6 +215,7 @@ aside .nav {
   padding: 1rem;
   overflow-x: hidden;
   overflow-y: auto;
+  border-bottom-right-radius: 8px;
 }
 /*------------Dashboard Card--------------*/
 .kpis {
@@ -258,13 +266,16 @@ aside .nav {
   align-items: start;
   margin: 0.7rem auto;
 }
-
+.dashboard-grid .card {
+  border: none;
+}
 /* Cards */
 .card {
   background: var(--surface);
   padding: 14px;
   border-radius: 12px;
   box-shadow: var(--shadow);
+  border-top-left-radius: none;
 }
 .card-head {
   display: flex;

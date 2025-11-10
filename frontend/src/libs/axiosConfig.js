@@ -1,5 +1,12 @@
 import axios from "axios";
 
-const basePath = "http://localhost:3000/v1/api";
+// const api = "https://auth-app-ie66.onrender.com/api/v1/user"
+const api = "http://localhost:3000/api/v1/admin";
+// const api = "https://echoda.onrender.com/api/v1/admin";
 
-export default axios;
+const axiosConfig = axios.create({
+  baseURL: api,
+  withCredentials: true,
+});
+
+export default axiosConfig;

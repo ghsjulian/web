@@ -50,11 +50,7 @@ const UsersPage = () => {
               <tr>
                 <td>
                   <div className="user-info">
-                    <img
-                      src="https://via.placeholder.com/40"
-                      alt="Alex"
-                      className="avatar"
-                    />
+                    <img src="/ghs.jpg" alt="Alex" className="avatar" />
                     <div>
                       <div className="user-name">Alexander Johnson</div>
                       <div className="user-email">alex.j@company.com</div>
@@ -86,11 +82,7 @@ const UsersPage = () => {
               <tr>
                 <td>
                   <div className="user-info">
-                    <img
-                      src="https://via.placeholder.com/40"
-                      alt="Sarah"
-                      className="avatar"
-                    />
+                    <img src="/ghs.jpg" alt="Sarah" className="avatar" />
                     <div>
                       <div className="user-name">Sarah Williams</div>
                       <div className="user-email">sarah.w@example.com</div>
@@ -120,11 +112,7 @@ const UsersPage = () => {
               <tr>
                 <td>
                   <div className="user-info">
-                    <img
-                      src="https://via.placeholder.com/40"
-                      alt="Mike"
-                      className="avatar"
-                    />
+                    <img src="/ghs.jpg" alt="Mike" className="avatar" />
                     <div>
                       <div className="user-name">Mike Chen</div>
                       <div className="user-email">mike.chen@shop.com</div>
@@ -154,11 +142,7 @@ const UsersPage = () => {
               <tr>
                 <td>
                   <div className="user-info">
-                    <img
-                      src="https://via.placeholder.com/40"
-                      alt="Mike"
-                      className="avatar"
-                    />
+                    <img src="/ghs.jpg" alt="Mike" className="avatar" />
                     <div>
                       <div className="user-name">Mike Chen</div>
                       <div className="user-email">mike.chen@shop.com</div>
@@ -188,11 +172,7 @@ const UsersPage = () => {
               <tr>
                 <td>
                   <div className="user-info">
-                    <img
-                      src="https://via.placeholder.com/40"
-                      alt="Mike"
-                      className="avatar"
-                    />
+                    <img src="/ghs.jpg" alt="Mike" className="avatar" />
                     <div>
                       <div className="user-name">Mike Chen</div>
                       <div className="user-email">mike.chen@shop.com</div>
@@ -222,11 +202,7 @@ const UsersPage = () => {
               <tr>
                 <td>
                   <div className="user-info">
-                    <img
-                      src="https://via.placeholder.com/40"
-                      alt="Mike"
-                      className="avatar"
-                    />
+                    <img src="/ghs.jpg" alt="Mike" className="avatar" />
                     <div>
                       <div className="user-name">Mike Chen</div>
                       <div className="user-email">mike.chen@shop.com</div>
