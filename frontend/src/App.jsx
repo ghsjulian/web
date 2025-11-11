@@ -7,6 +7,11 @@ import AdminLogin from "./pages/AminLogin";
 import UsersPage from "./pages/UsersPage";
 import ViewUser from "./pages/ViewUser";
 import AddProduct from "./pages/AddProduct";
+import Analytics from "./pages/Analytics";
+import Overview from "./pages/Overview";
+import ProductsPage from "./pages/ProductsPage";
+import OrdersPage from "./pages/OrdersPage";
+import BillingInfo from "./pages/BillingInfo";
 
 const App = () => {
   return (
@@ -14,8 +19,13 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Layouts />}>
           <Route index element={<Dashboard />} />
-          <Route path="/users" element={<UsersPage />} />
+          <Route path="/analytics" element={<Analytics />} />
+          <Route path="/overview" element={<Overview />} />
+          <Route path="/products" element={<ProductsPage />} />
+          <Route path="/orders" element={<OrdersPage />} />
           <Route path="/view-user" element={<ViewUser />} />
+          <Route path="/customers" element={<UsersPage />} />
+          <Route path="/billing-info" element={<BillingInfo />} />
           <Route path="/add-product" element={<AddProduct />} />
         </Route>
         <Route path="/admin-login" element={<AdminLogin />} />

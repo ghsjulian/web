@@ -12,7 +12,7 @@ const Sidebar = () => {
             <span className="section-title">Main Menu</span>
             <ul>
               <li className="active">
-                <NavLink to="#">
+                <NavLink to="/">
                   <span className="ico">
                     <icons.FcPieChart size={24} />
                   </span>
@@ -20,7 +20,7 @@ const Sidebar = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="#">
+                <NavLink to="/analytics">
                   <span className="ico">
                     <icons.FcBarChart size={24} />
                   </span>
@@ -28,7 +28,7 @@ const Sidebar = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="#">
+                <NavLink to="/overview">
                   <span className="ico">
                     <icons.FcFlashOn size={24} />
                   </span>
@@ -42,7 +42,7 @@ const Sidebar = () => {
             <span className="section-title">Commerce</span>
             <ul>
               <li>
-                <NavLink to="#">
+                <NavLink to="/products">
                   <span className="ico">
                     <icons.FcBriefcase size={24} />
                   </span>
@@ -50,7 +50,7 @@ const Sidebar = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="#">
+                <NavLink to="/orders">
                   <span className="ico">
                     <icons.FcRules size={24} />
                   </span>
@@ -58,7 +58,7 @@ const Sidebar = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/users">
+                <NavLink to="/customers">
                   <span className="ico">
                     <icons.FcConferenceCall size={24} />
                   </span>
@@ -66,7 +66,7 @@ const Sidebar = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="#">
+                <NavLink to="/billing-info">
                   <span className="ico">
                     <icons.FcViewDetails size={24} />
                   </span>
@@ -74,7 +74,7 @@ const Sidebar = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="#">
+                <NavLink to="/deliveries">
                   <span className="ico">
                     <icons.FcShipped size={24} />
                   </span>
@@ -82,7 +82,7 @@ const Sidebar = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="#">
+                <NavLink to="/earnings">
                   <span className="ico">
                     <icons.FcCurrencyExchange size={24} />
                   </span>
@@ -90,7 +90,7 @@ const Sidebar = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="#">
+                <NavLink to="/categories">
                   <span className="ico">
                     <icons.FcFlowChart size={24} />
                   </span>
@@ -112,7 +112,7 @@ const Sidebar = () => {
             <span className="section-title">Engage</span>
             <ul>
               <li>
-                <NavLink to="#">
+                <NavLink to="/messages">
                   <span className="ico">
                     <icons.FcInvite size={24} />
                   </span>
@@ -120,7 +120,7 @@ const Sidebar = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="#">
+                <NavLink to="/marketing">
                   <span className="ico">
                     <icons.FcAdvertising size={24} />
                   </span>
@@ -128,7 +128,7 @@ const Sidebar = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="#">
+                <NavLink to="/integrations">
                   <span className="ico">🔗</span>
                   <span className="label">Integrations</span>
                 </NavLink>
@@ -140,7 +140,7 @@ const Sidebar = () => {
             <span className="section-title">Settings</span>
             <ul>
               <li>
-                <NavLink to="#">
+                <NavLink to="/settings">
                   <span className="ico">
                     <icons.FcSettings size={24} />
                   </span>
@@ -148,7 +148,7 @@ const Sidebar = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="#">
+                <NavLink to="/security">
                   <span className="ico">
                     <icons.FcPrivacy size={24} />
                   </span>
@@ -156,7 +156,7 @@ const Sidebar = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="#">
+                <NavLink to="/help-support">
                   <span className="ico">
                     <icons.FcBullish size={24} />
                   </span>

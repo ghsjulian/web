@@ -265,17 +265,21 @@ const UsersPage = () => {
             </div>
           </div>
         </div>
-        <div className="pagination">
-          <div className="page-btn arrow">
-            <i className="fas fa-chevron-left"></i>
+        <div class="pagination">
+          <div class="pagination-info">Showing 1 to 4 of 48 results</div>
+          <div class="pagination-controls">
+            <button class="page-btn disabled">
+              <span class="icon-prev"></span>
+            </button>
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <button class="page-btn">4</button>
+            <button class="page-btn">5</button>
+            <button class="page-btn">
+              <span class="icon-next"></span>
+            </button>
           </div>
-          <div className="page-btn number active">1</div>
-          <div className="page-btn number">2</div>
-          <div className="page-btn number">3</div>
-          <div className="page-btn arrow">
-            <i className="fas fa-chevron-right"></i>
-          </div>
-          <div className="page-info">Showing 1-10 of 156 users</div>
         </div>
       </div>
     </div>

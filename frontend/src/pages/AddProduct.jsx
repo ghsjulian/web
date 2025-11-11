@@ -1,251 +1,318 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/add-product.css";
 
 const AddProduct = () => {
+  const [formData, setFormData] = useState({
+    productName: "",
+    sku: "",
+    category: "",
+    brand: "",
+    price: "",
+    salePrice: "",
+    stock: "",
+    lowStock: "10",
+    shortDesc: "",
+    fullDesc: "",
+    images: [],
+  });
+
+  const [imagePreviews, setImagePreviews] = useState([]);
+
+  // Handle input changes
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData((prev) => ({ ...prev, [id]: value }));
+  };
+
+  // Handle file upload + preview
+  const handleImageUpload = (e) => {
+    const newFiles = Array.from(e.target.files);
+
+    // Combine old + new images (but max 6)
+    const combined = [...formData.images, ...newFiles].slice(0, 6);
+
+    // Validate max image count
+    if (combined.length > 6) {
+      alert("Maximum 6 images allowed!");
+    }
+
+    // Filter by size (<= 5MB)
+    const filtered = combined.filter((file) => file.size <= 5 * 1024 * 1024);
+    if (filtered.length < combined.length) {
+      alert("Some images exceeded 5MB limit!");
+    }
+
+    // Update form data
+    setFormData((prev) => ({ ...prev, images: filtered }));
+
+    // Generate preview URLs for all images
+    const previews = filtered.map((file) => URL.createObjectURL(file));
+    setImagePreviews(previews);
+  };
+
+  // Function to check required fields
+  const isFormValid = () => {
+    const { productName, sku, category, price, stock, fullDesc, images } =
+      formData;
+
+    // Check required fields
+    if (
+      !productName.trim() ||
+      !sku.trim() ||
+      !category.trim() ||
+      !price ||
+      !stock ||
+      !fullDesc.trim() ||
+      images.length === 0
+    ) {
+      return false;
+    }
+
+    return true;
+  };
+
+  // Handle form submit (Publish)
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!isFormValid()) {
+      alert("⚠️ Please fill all required fields before publishing!");
+      return;
+    }
+
+    console.log("Publishing Product:", formData);
+    alert("✅ Product Published Successfully!");
+  };
+
+  // Save Draft
+  const handleSaveDraft = (e) => {
+    e.preventDefault();
+    console.log("Draft Saved:", formData);
+    alert("📝 Draft Saved Successfully!");
+  };
+
   return (
-    <>
-      <div class="form-card">
-        <div class="form-header">
-          <h2 class="form-title">Product Information</h2>
-          <div class="form-actions">
-            <button class="btn btn-secondary">
-              <i class="fas fa-save"></i> Save Draft
-            </button>
-            <button class="btn btn-primary">
-              <i class="fas fa-paper-plane"></i> Publish
-            </button>
-          </div>
+    <div className="form-card">
+      <div className="form-header">
+        <h2 className="form-title">Product Information</h2>
+        <div className="form-actions">
+          <button className="btn btn-secondary" onClick={handleSaveDraft}>
+            <i className="fas fa-save"></i> Save Draft
+          </button>
+          <button className="btn btn-primary" onClick={handleSubmit}>
+            <i className="fas fa-paper-plane"></i> Publish
+          </button>
         </div>
-        <form id="addProductForm">
-          <div class="form-grid">
-            <div class="form-group">
-              <label htmlFor="productName">
-                Product Name <span style={{ color: "#dc3545" }}>*</span>
-              </label>
-              <input
-                type="text"
-                id="productName"
-                placeholder="e.g., Samsung Galaxy A55"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <label htmlFor="sku">
-                SKU <span style={{ color: "#dc3545" }}>*</span>
-              </label>
-              <input
-                type="text"
-                id="sku"
-                placeholder="e.g., SAM-A55-BLK"
-                required
-              />
-            </div>
-          </div>
-          <div class="form-grid">
-            <div class="form-group">
-              <label htmlFor="category">
-                Category <span style={{ color: "#dc3545" }}>*</span>
-              </label>
-              <select id="category" required>
-                <option value="">Select Category</option>
-                <option value="smartphones">Smartphones</option>
-                <option value="laptops">Laptops</option>
-                <option value="accessories">Accessories</option>
-                <option value="audio">Audio</option>
-                <option value="wearables">Wearables</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label htmlFor="brand">Brand</label>
-              <select id="brand">
-                <option value="">Select Brand</option>
-                <option value="samsung">Samsung</option>
-                <option value="apple">Apple</option>
-                <option value="xiaomi">Xiaomi</option>
-                <option value="oneplus">OnePlus</option>
-                <option value="realme">Realme</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-grid">
-            <div class="form-group">
-              <label htmlFor="price">
-                Regular Price (BDT) <span style={{ color: "#dc3545" }}>*</span>
-              </label>
-              <input
-                type="number"
-                id="price"
-                placeholder="e.g., 35990"
-                min="0"
-                step="1"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <label htmlFor="salePrice">Sale Price (BDT)</label>
-              <input
-                type="number"
-                id="salePrice"
-                placeholder="e.g., 32990"
-                min="0"
-                step="1"
-              />
-            </div>
-            <div class="form-group">
-              <label htmlFor="stock">
-                Stock Quantity <span style={{ color: "#dc3545" }}>*</span>
-              </label>
-              <input
-                type="number"
-                id="stock"
-                placeholder="e.g., 50"
-                min="0"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <label htmlFor="lowStock">Low Stock Alert</label>
-              <input
-                type="number"
-                id="lowStock"
-                placeholder="e.g., 10"
-                min="0"
-                value="10"
-              />
-            </div>
-          </div>
-          <div class="form-group full-width">
-            <label htmlFor="shortDesc">Short Description</label>
-            <textarea
-              id="shortDesc"
-              placeholder="Brief overview (max 160 chars)"
-            ></textarea>
-          </div>
-          <div class="form-group full-width">
-            <label htmlFor="fullDesc">
-              Full Description <span style={{ color: "#dc3545" }}>*</span>
+      </div>
+
+      <form id="addProductForm">
+        <div className="form-grid">
+          <div className="form-group">
+            <label htmlFor="productName">
+              Product Name <span style={{ color: "#dc3545" }}>*</span>
             </label>
-            <textarea
-              id="fullDesc"
-              placeholder="Detailed product description, features, specs..."
-              required
-            ></textarea>
-          </div>
-          <div class="form-group full-width">
-            <label>
-              Product Images <span style={{ color: "#dc3545" }}>*</span>
-            </label>
-            <div class="file-upload">
-              <input type="file" id="productImages" multiple accept="image/*" />
-              <label htmlFor="productImages" class="file-upload-label">
-                <i class="fas fa-cloud-upload-alt"></i>
-                <div>
-                  <strong>Click to upload</strong> or drag and drop
-                  <br />
-                  <small>PNG, JPG, GIF up to 5MB each (Max 6 images)</small>
-                </div>
-              </label>
-            </div>
-            <div class="image-preview" id="imagePreview"></div>
-          </div>
-          <div class="form-group full-width">
-            <label>Specifications</label>
-            <div id="specsContainer">
-              <div class="form-grid" style={{ alignItems: "end" }}>
-                <div class="form-group">
-                  <input
-                    type="text"
-                    placeholder="Spec Name (e.g., RAM)"
-                    class="spec-name"
-                  />
-                </div>
-                <div class="form-group">
-                  <input
-                    type="text"
-                    placeholder="Spec Value (e.g., 8GB)"
-                    class="spec-value"
-                  />
-                </div>
-                <button
-                  type="button"
-                  class="btn btn-secondary btn-sm"
-                  onclick="this.parentElement.parentElement.remove()"
-                >
-                  <i class="fas fa-trash"></i>
-                </button>
-              </div>
-            </div>
-            <button
-              type="button"
-              class="btn btn-outline"
-              style={{ marginTop: "0.5rem" }}
-            >
-              <i class="fas fa-plus"></i> Add Specification
-            </button>
-          </div>
-          <div class="form-group full-width">
-            <label htmlFor="tags">Tags</label>
-            <div class="tags-input" id="tagsInput">
-              <input type="text" placeholder="Type tag and press Enter..." />
-            </div>
-          </div>
-          <div class="form-group full-width">
-            <label htmlFor="metaTitle">Meta Title</label>
             <input
               type="text"
-              id="metaTitle"
-              placeholder="SEO title (60 chars)"
-              maxlength="60"
+              id="productName"
+              value={formData.productName}
+              onChange={handleChange}
+              placeholder="e.g., Samsung Galaxy A55"
+              required
             />
           </div>
-          <div class="form-group full-width">
-            <label htmlFor="metaDesc">Meta Description</label>
-            <textarea
-              id="metaDesc"
-              placeholder="SEO description (160 chars)"
-              maxlength="160"
-            ></textarea>
+          <div className="form-group">
+            <label htmlFor="sku">
+              SKU <span style={{ color: "#dc3545" }}>*</span>
+            </label>
+            <input
+              type="text"
+              id="sku"
+              value={formData.sku}
+              onChange={handleChange}
+              placeholder="e.g., SAM-A55-BLK"
+              required
+            />
           </div>
-          <div class="form-grid">
-            <div class="form-group">
-              <div class="status-toggle">
-                <label>Publish Status</label>
-                <label class="toggle-switch">
-                  <input type="checkbox" id="publishStatus" checked />
-                  <span class="slider"></span>
-                </label>
-                <span id="statusText">Published</span>
+        </div>
+
+        <div className="form-grid">
+          <div className="form-group">
+            <label htmlFor="category">
+              Category <span style={{ color: "#dc3545" }}>*</span>
+            </label>
+            <select
+              id="category"
+              value={formData.category}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Select Category</option>
+              <option value="smartphones">Smartphones</option>
+              <option value="laptops">Laptops</option>
+              <option value="accessories">Accessories</option>
+              <option value="audio">Audio</option>
+              <option value="wearables">Wearables</option>
+            </select>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="brand">Brand</label>
+            <select id="brand" value={formData.brand} onChange={handleChange}>
+              <option value="">Select Brand</option>
+              <option value="samsung">Samsung</option>
+              <option value="apple">Apple</option>
+              <option value="xiaomi">Xiaomi</option>
+              <option value="oneplus">OnePlus</option>
+              <option value="realme">Realme</option>
+            </select>
+          </div>
+        </div>
+
+        <div className="form-grid">
+          <div className="form-group">
+            <label htmlFor="price">
+              Regular Price (BDT) <span style={{ color: "#dc3545" }}>*</span>
+            </label>
+            <input
+              type="number"
+              id="price"
+              value={formData.price}
+              onChange={handleChange}
+              placeholder="e.g., 35990"
+              min="0"
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="salePrice">Sale Price (BDT)</label>
+            <input
+              type="number"
+              id="salePrice"
+              value={formData.salePrice}
+              onChange={handleChange}
+              placeholder="e.g., 32990"
+              min="0"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="stock">
+              Stock Quantity <span style={{ color: "#dc3545" }}>*</span>
+            </label>
+            <input
+              type="number"
+              id="stock"
+              value={formData.stock}
+              onChange={handleChange}
+              placeholder="e.g., 50"
+              min="0"
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="lowStock">Low Stock Alert</label>
+            <input
+              type="number"
+              id="lowStock"
+              value={formData.lowStock}
+              onChange={handleChange}
+              placeholder="e.g., 10"
+              min="0"
+            />
+          </div>
+        </div>
+
+        <div className="form-group full-width">
+          <label htmlFor="shortDesc">Short Description</label>
+          <textarea
+            id="shortDesc"
+            value={formData.shortDesc}
+            onChange={handleChange}
+            placeholder="Brief overview (max 160 chars)"
+          ></textarea>
+        </div>
+
+        <div className="form-group full-width">
+          <label htmlFor="fullDesc">
+            Full Description <span style={{ color: "#dc3545" }}>*</span>
+          </label>
+          <textarea
+            id="fullDesc"
+            value={formData.fullDesc}
+            onChange={handleChange}
+            placeholder="Detailed product description, features, specs..."
+            required
+          ></textarea>
+        </div>
+
+        <div className="form-group full-width">
+          <label>
+            Product Images <span style={{ color: "#dc3545" }}>*</span>
+          </label>
+          <div className="file-upload">
+            <input
+              type="file"
+              id="productImages"
+              multiple
+              accept="image/*"
+              onChange={handleImageUpload}
+            />
+            <label htmlFor="productImages" className="file-upload-label">
+              <i className="fas fa-cloud-upload-alt"></i>
+              <div>
+                <strong>Click to upload</strong> or drag and drop
+                <br />
+                <small>PNG, JPG, GIF up to 5MB each (Max 6 images)</small>
               </div>
-            </div>
-            <div class="form-group">
-              <div class="checkbox-group">
-                <input type="checkbox" id="featured" />
-                <label htmlFor="featured">Mark as Featured Product</label>
-              </div>
-            </div>
+            </label>
           </div>
-          <div class="alert alert-info">
-            <i class="fas fa-info-circle"></i>
-            <div>
-              <strong>Tip:</strong> All fields marked with{" "}
-              <span style={{ color: "#dc3545" }}>*</span> are required. Product
-              will be live immediately if published.
+
+          {imagePreviews.length > 0 && (
+            <div className="image-preview" id="imagePreview">
+              {imagePreviews.map((src, idx) => (
+                <div key={idx + 1} className="preview-item">
+                  <img src={src} alt={`Preview ${idx}`} />
+                  <button
+                    type="button"
+                    className="remove-btn"
+                    title="Remove Image"
+                    onClick={() => {
+                      const newImages = formData.images.filter(
+                        (_, i) => i + 1 !== idx + 1
+                      );
+                      setFormData((prev) => ({ ...prev, images: newImages }));
+                      const newPreviews = imagePreviews.filter(
+                        (_, i) => i + 1 !== idx + 1
+                      );
+                      setImagePreviews(newPreviews);
+                      console.log(formData.images);
+                      /*
+                      here i have to fixed the remove image on the formdata array, so that 
+                      image will be removed from the array , 
+                      TODO : It is still 1 image even remove all images
+
+                      */
+                    }}
+                  >
+                    ×
+                  </button>
+                </div>
+              ))}
             </div>
+          )}
+        </div>
+
+        <div className="alert alert-info">
+          <i className="fas fa-info-circle"></i>
+          <div>
+            <strong>Tip:</strong> All fields marked with{" "}
+            <span style={{ color: "#dc3545" }}>*</span> are required. Product
+            will be live immediately if published.
           </div>
-          <div
-            class="form-actions"
-            style={{ marginTop: "2rem", justifyContent: "flex-end" }}
-          >
-            <button type="button" class="btn btn-secondary">
-              <i class="fas fa-ban"></i> Cancel
-            </button>
-            <button type="submit" class="btn btn-primary">
-              <i class="fas fa-check"></i> Add Product
-            </button>
-          </div>
-        </form>
-      </div>
-    </>
+        </div>
+      </form>
+    </div>
   );
 };
 
