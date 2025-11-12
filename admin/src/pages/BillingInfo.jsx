@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/billing-styles.css";
+//import "../styles/billing-styles.css";
 
 const BillingInfo = () => {
   return (
