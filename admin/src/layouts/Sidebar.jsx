@@ -1,8 +1,15 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { NavLink,useLocation } from "react-router-dom";
 import * as icons from "react-icons/fc";
 
 const Sidebar = () => {
+  const location = useLocation()
+  const [path,setpath] = useState("")
+
+  useEffect(()=>{
+    setpath(location)
+  },[])
+
   return (
     <aside>
       <h3>Dashboard</h3>

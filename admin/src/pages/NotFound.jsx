@@ -1,18 +1,19 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import "../styles/404.css"
+import "../styles/404.css";
 const NotFound = () => {
-    return (
-        <div className="notfound-container">
-            <h1 className="notfound-error-code" aria-label="404">
-                404
-            </h1>
-            <h2 className="notfound-title">Oops! Page Not Found</h2>
-            <p className="notfound-description">
-                The page you're looking for seems to have wandered off into the
-                digital wilderness. Don't worry — let's get you back on track!
-            </p>
-            <div className="notfound-illustration" aria-hidden="true">
+  return (
+    <div className="notfound-container">
+      <h1 className="notfound-error-code" aria-label="404">
+        404
+      </h1>
+      <h2 className="notfound-title">Oops! Page Not Found</h2>
+      <p className="notfound-description">
+        The page you're looking for seems to have wandered off into the digital
+        wilderness. Don't worry — let's get you back on track!
+      </p>
+      <div className="notfound-illustration" aria-hidden="true">
+        {/*
                 <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
                     <ellipse
                         cx="200"
@@ -68,21 +69,22 @@ const NotFound = () => {
                         transform="rotate(20 345 210)"
                     />
                 </svg>
-            </div>
+                */}
+      </div>
 
-            <NavLink to="/" className="notfound-btn" aria-label="Go to homepage">
-                <span className="sr-only">Return to </span>Home Page
-            </NavLink>
-            <NavLink
-                to="javascript:history.back()"
-                className="notfound-btn notfound-btn-secondary"
-                aria-label="Go back to previous page"
-            >
-                Go Back
-            </NavLink>
-            <p className="notfound-sr-only">Error 404: Page not found</p>
-        </div>
-    );
+      <NavLink to="/" className="notfound-btn" aria-label="Go to homepage">
+        <span className="sr-only">Return to </span>Home Page
+      </NavLink>
+      <NavLink
+        to="javascript:history.back()"
+        className="notfound-btn notfound-btn-secondary"
+        aria-label="Go back to previous page"
+      >
+        Go Back
+      </NavLink>
+      <p className="notfound-sr-only">Error 404: Page not found</p>
+    </div>
+  );
 };
 
 export default NotFound;
