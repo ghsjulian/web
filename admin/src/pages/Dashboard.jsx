@@ -9,7 +9,7 @@ const Dashboard = () => {
     return (
         <>
             <DashboardCard />
-            <section className="dashboard-grid">
+            <section className="dashboard-grid-layout">
                 <SalesChart />
                 <Shortcuts />
                 <RecentTransactions />

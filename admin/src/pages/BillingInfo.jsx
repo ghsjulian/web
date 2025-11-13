@@ -1,10 +1,10 @@
 import React from "react";
-//import "../styles/billing-styles.css";
+import "../styles/billing-styles.css";
 
 const BillingInfo = () => {
   return (
-    <div className="container">
-      <div className="header">
+    <div className="billing-container">
+      <div className="billing-header">
         <h1>Billing & Invoices</h1>
         <button className="export-btn">
           <span className="icon-export"></span> Export CSV
@@ -65,7 +65,7 @@ const BillingInfo = () => {
         <input type="date" className="date-input" placeholder="From Date" />
         <input type="date" className="date-input" placeholder="To Date" />
       </div>
-      <div className="table-container">
+      <div className="billing-table-container">
         <table>
           <thead>
             <tr>

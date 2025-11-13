@@ -2,8 +2,8 @@ import React from 'react'
 
 const SalesChart = () => {
   return (
-    <div className="card chart-card">
-          <div className="card-head">
+    <div className="dashboard-card chart-card">
+          <div className="dashboard-card-head">
             <h3>Sales — Last 30 days</h3>
             <div className="muted">Auto-updated</div>
           </div>

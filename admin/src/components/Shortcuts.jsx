@@ -2,7 +2,7 @@ import React from "react";
 
 const Shortcuts = () => {
     return (
-        <div className="card quick-panel">
+        <div className="dashboard-card quick-panel">
             <h3>Shortcuts</h3>
             <div className="shortcuts">
                 <a className="shortcut" href="#">
