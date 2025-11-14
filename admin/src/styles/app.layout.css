@@ -384,6 +384,7 @@ aside .nav {
 }
 
 /* Table */
+/*
 .dashboard-table-wrap {
     overflow: auto;
 }
@@ -403,6 +404,7 @@ tbody td {
     border-bottom: 1px solid rgba(11, 18, 32, 0.03);
     font-size: 0.95rem;
 }
+*/
 .pill {
     display: inline-block;
     padding: 6px 8px;

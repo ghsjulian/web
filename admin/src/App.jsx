@@ -5,6 +5,7 @@ import Layouts from "./layouts/Layouts";
 import NotFound from "./pages/NotFound";
 import Dashboard from "./pages/Dashboard";
 import AdminLogin from "./pages/AminLogin";
+import Signup from "./pages/Signup";
 import UsersPage from "./pages/UsersPage";
 import ViewUser from "./pages/ViewUser";
 import AddProduct from "./pages/AddProduct";
@@ -30,6 +31,7 @@ const App = () => {
           <Route path="/add-product" element={<AddProduct />} />
         </Route>
         <Route path="/admin-login" element={<AdminLogin />} />
+        <Route path="/create-user" element={<Signup />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

@@ -7,14 +7,14 @@ const cors = require("cors");
 const helmet = require("helmet");
 const compression = require("compression");
 const morgan = require("morgan");
+const createConnection = require("./configs/db.config");
 
 // ---------------------- INITIALIZE APP ----------------------
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 const HOST = process.env.HOST || "127.0.0.1";
 
 // ---------------------- GLOBAL MIDDLEWARES ----------------------
-// Secure HTTP headers
 app.use(helmet());
 // Log HTTP requests (only in development)
 if (process.env.NODE_ENV !== "production") {
@@ -29,7 +29,7 @@ app.use(cookieParser());
 // Enable CORS for frontend domain
 app.use(
     cors({
-        origin: "http://127.0.0.1:5000",
+        origin: "http://localhost:5001",
         methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
         allowedHeaders: ["Content-Type", "Authorization"],
         credentials: true,
@@ -48,10 +48,8 @@ app.get("/admin", (req, res) => {
 });
 
 app.get("/", (req, res) => {
-     res.send("🚀 Server is running successfully!");
+    res.send("🚀 Server is running successfully!");
 });
-
-// ---------------------- APIs Will Be Defined Here ----------------------
 
 // ---------------------- ERROR HANDLING ----------------------
 app.use((err, req, res, next) => {
@@ -63,7 +61,18 @@ app.use((err, req, res, next) => {
     });
 });
 
+if (process.env.NODE_ENV !== "production") console.clear();
+// ---------------------- APIs Will Be Defined Here ----------------------
+app.use("/api/v1", require("./routes/auth.routes"));
+
 // ---------------------- START SERVER ----------------------
-app.listen(PORT, () => {
-    console.log(`✅ Server is running on http://${HOST}\n`);
-});
+createConnection()
+    .then(() => {
+        app.listen(PORT, () => {
+            console.log("\n[+] Express Server Running!");
+            console.log(`\n[+] Host:${HOST}\n`);
+        });
+    })
+    .catch(err => {
+        console.error("❌ Database connection failed:", err.message);
+    });

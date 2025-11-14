@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "homepage" : "http://localhost:8080/server/admin",
+  "homepage": "http://localhost:8080/server/admin",
   "scripts": {
     "start": "node server/server.js",
     "server": "nodemon server/server.js"
@@ -14,6 +14,7 @@
   "type": "commonjs",
   "dependencies": {
     "bcryptjs": "^3.0.3",
+    "cloudinary": "^2.8.0",
     "compression": "^1.8.1",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
@@ -22,6 +23,7 @@
     "helmet": "^8.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.19.2",
-    "morgan": "^1.10.1"
+    "morgan": "^1.10.1",
+    "nodemailer": "^7.0.10"
   }
 }
